@@ -13,6 +13,7 @@ Waits until the service reaches a stable state.
 ## USAGE
 
 ```bash
+# Assumes you have relevant AWS creds in env or .aws or usual places
 ecs-restarter -region <aws-region> -filter <substring> [-workers N]
 ```
 
@@ -20,18 +21,9 @@ ecs-restarter -region <aws-region> -filter <substring> [-workers N]
 
 ecs-restarter -region eu-west-1 -filter myservice
 
-## BUILD
+## BUILD LOCALLY
 
 ```bash
-
-for GOOS in linux darwin; do
-    for GOARCH in amd64 arm64; do
-        CGO_ENABLED=0 GOOS=$GOOS GOARCH=$GOARCH go build -o ecs-restarter.$GOOS.$GOARCH main.go
-    done
-done
-
-# or
-
 # ... assuming you've installed goreleaser
 goreleaser release --snapshot --clean
 ```
